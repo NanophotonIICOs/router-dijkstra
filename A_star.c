@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include "aux_a.h"
-#include "aStar.h"
-#include "Heap.h"
 #include <error.h>
+#include "./headers/prototypes.h"
+#include "./headers/aStar.h"
+#include "./headers/Heap.h"
 
 int main() {
 
@@ -15,7 +15,7 @@ int main() {
 
     int** grid = allocateGrid(gridDim.row, gridDim.col);
 
-    const char* filename = "./gridCell.txt";
+    const char* filename = "./gridCells.txt"; // File with grid
 
     int width = gridDim.row;
     int height = gridDim.col;
@@ -45,32 +45,3 @@ int main() {
 
     return 0;
 }
-
-    // int values[4][10] = {{ 1, 0, 1, 1, 0, 1, 1, 1, 0, 0 },
-    //                      { 1, 1, 1, 1, 0, 1, 0, 1, 0, 1 },
-    //                      { 1, 0, 1, 0, 1, 1, 0, 1, 1, 1 },
-    //                      { 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 }};
-    
-    // // Copiar los valores a la matriz reservada
-    // for (int i = 0; i < gridDim.row; i++) {
-    //     for (int j = 0; j < gridDim.col; j++) {
-    //         grid[i][j] = values[i][j];
-    //     }
-    // }
-
-
-    // const char* filename = "./grid.txt";
-    // FILE* file = fopen(filename, "w");
-    // if (file == NULL) {
-    //     printf("Error: No se pudo abrir el archivo.\n");
-    //     return 1;
-    // }
-
-    // for (int i = 0; i < gridDim.row; i++) {
-    //     for (int j = 0; j < gridDim.col; j++) {
-    //         fprintf(file, "%d ", grid[i][j]);
-    //     }
-    //     fprintf(file, "\n");
-    // }
-
-    // fclose(file);

@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "libbmp.h"
-#include "libbmp.c"
+#include "headers/libbmp.h"
+#include "headers/libbmp.c"
 
-#define GRID_SIZE 20
-#define CELL_SIZE 20
 #define GRID_WIDTH 500
 #define GRID_HEIGHT 500
+#define GRID_SIZE 20
+#define CELL_SIZE 20
 #define AVAILABLE_COLOR_R 255
 #define AVAILABLE_COLOR_G 255
 #define AVAILABLE_COLOR_B 255
@@ -92,7 +92,7 @@ int main() {
     bmp_img img;
     bmp_img_init_df(&img, GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE);
 
-    drawGrid(&img, "./gridCell.txt");
+    drawGrid(&img, "./gridCells.txt");
     highlightPath(&img, "./path.txt");
 
     bmp_img_write(&img, "./cuadricula_final.bmp");

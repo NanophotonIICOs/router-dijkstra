@@ -79,7 +79,6 @@ int main() {
         }
     }
 
-    // Liberar memoria
     free(macro.rectangles);
 
     fclose(file);

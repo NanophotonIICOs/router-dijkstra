@@ -33,7 +33,7 @@ void tracePath(cell** cellDetails, pair gridDim, pair dest) {
 
     FILE* file = fopen(filename, "w");
     if (file == NULL) {
-        printf("Error: No se pudo abrir el archivo.\n");
+        printf("Error: No se pudo abrir el archivo. (aStar.h/tracePath)\n");
         return;
     }
     
@@ -63,7 +63,7 @@ void tracePath(cell** cellDetails, pair gridDim, pair dest) {
         // printf("-> (%d,%d) ", path[i][0], path[i][1]);
         fprintf(file, "%d, %d\n", path[i][0], path[i][1]);
     }
-    printf("\n\n");
+    // printf("\n\n");
     fclose(file);
 }
 
@@ -188,7 +188,7 @@ int aStar(int** grid, pair gridDim, pair src, pair dest){
     }
 
     printf("minHeap length: %d\n", minheap.n);
-    printf("minHeap /f (x, y)/: ");
+    // printf("minHeap /f (x, y)/: ");
     // printHeap(&minheap);
 
     freeClosedList(closedList, gridDim.row);
@@ -273,11 +273,11 @@ void freeCellDetails(cell** cellDetails, int rows) {
 void readGrid(const char* filename, int** grid, int width, int height) {
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
-        printf("Error %d \n", errno);
-        printf("It's null\n");
+        printf("Errno %d \n", errno);
+        printf("It's null (aStar.h/readGrid)\n");
         exit(1);
     } else {
-        printf("working\n");
+        printf("Grid file open.\n");
     }
 
     for (int i = 0; i < height; i++) {
