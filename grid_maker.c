@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define WIDTH 500
-#define HEIGHT 500
+#define HEIGHT 300
 
 typedef struct {
     int x1, y1, x2, y2;

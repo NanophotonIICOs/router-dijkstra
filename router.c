@@ -4,7 +4,7 @@
 #include "headers/libbmp.c"
 
 #define GRID_WIDTH 500
-#define GRID_HEIGHT 500
+#define GRID_HEIGHT 300
 #define GRID_SIZE 20
 #define CELL_SIZE 20
 #define AVAILABLE_COLOR_R 255

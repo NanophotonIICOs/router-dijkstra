@@ -10,15 +10,15 @@
 int main() {
 
     pair gridDim;
-    gridDim.row = 500;
+    gridDim.row = 300;
     gridDim.col = 500;
 
     int** grid = allocateGrid(gridDim.row, gridDim.col);
 
     const char* filename = "./gridCells.txt"; // File with grid
 
-    int width = gridDim.row;
-    int height = gridDim.col;
+    int width = gridDim.col;
+    int height = gridDim.row;
 
     readGrid(filename, grid, width, height);
 
