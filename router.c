@@ -4,7 +4,7 @@
 #include "headers/libbmp.c"
 
 #define GRID_WIDTH 500
-#define GRID_HEIGHT 300
+#define GRID_HEIGHT 500
 #define GRID_SIZE 20
 #define CELL_SIZE 20
 #define AVAILABLE_COLOR_R 255
@@ -92,10 +92,10 @@ int main() {
     bmp_img img;
     bmp_img_init_df(&img, GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE);
 
-    drawGrid(&img, "./gridCells.txt");
-    highlightPath(&img, "./path.txt");
+    drawGrid(&img, "D:/Desktop/PAR_scripts/router-dijkstra/gridCell.txt");
+    highlightPath(&img, "D:/Desktop/PAR_scripts/router-dijkstra/path.txt");
 
-    bmp_img_write(&img, "./cuadricula_final.bmp");
+    bmp_img_write(&img, "D:/Desktop/PAR_scripts/router-dijkstra/cuadricula_final.bmp");
     bmp_img_free(&img);
 
     return 0;

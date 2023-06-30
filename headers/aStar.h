@@ -29,7 +29,7 @@ int h_val(pair cell, pair dest){
 }
 
 void tracePath(cell** cellDetails, pair gridDim, pair dest) {
-    const char* filename = "./path.txt";  // Nombre del archivo de salida
+    const char* filename = "D:/Desktop/PAR_scripts/router-dijkstra/path.txt";  // Nombre del archivo de salida
 
     FILE* file = fopen(filename, "w");
     if (file == NULL) {
@@ -143,50 +143,51 @@ int aStar(int** grid, pair gridDim, pair src, pair dest){
     int f = 0;
     insertHeap(&minheap, f, src.row, src.col);
 
+    printf("Inicio de busqueda\n");
     while(minheap.n>0){
-    
-    elem = deleteMin(&minheap);
-    cell_b.row = elem.cell.row;
-    cell_b.col = elem.cell.col;
-    closedList[elem.cell.row][elem.cell.col] = YES;
+        elem = deleteMin(&minheap);
+        cell_b.row = elem.cell.row;
+        cell_b.col = elem.cell.col;
+        closedList[elem.cell.row][elem.cell.col] = YES;
 
-    // printf("\n Norte:\n");
-    // Norte
-    ns = -1;
-    eo = 0;
-    cell_a.row = cell_b.row + ns; // Celda norte
-    cell_a.col = cell_b.col + eo; // Celda norte
-    if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
-        break;
+        // printf("\n Norte:\n");
+        // Norte
+        ns = -1;
+        eo = 0;
+        cell_a.row = cell_b.row + ns; // Celda norte
+        cell_a.col = cell_b.col + eo; // Celda norte
+        if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
+            break;
 
-    // printf("\n Sur:\n");
-    // Sur
-    ns = 1;
-    eo = 0;
-    cell_a.row = cell_b.row + ns; // Celda norte
-    cell_a.col = cell_b.col + eo; // Celda norte
-    if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
-        break;
+        // printf("\n Sur:\n");
+        // Sur
+        ns = 1;
+        eo = 0;
+        cell_a.row = cell_b.row + ns; // Celda norte
+        cell_a.col = cell_b.col + eo; // Celda norte
+        if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
+            break;
 
-    // printf("\n Este:\n");
-    // Este
-    ns = 0;
-    eo = 1;
-    cell_a.row = cell_b.row + ns; // Celda norte
-    cell_a.col = cell_b.col + eo; // Celda norte
-    if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
-        break;
+        // printf("\n Este:\n");
+        // Este
+        ns = 0;
+        eo = 1;
+        cell_a.row = cell_b.row + ns; // Celda norte
+        cell_a.col = cell_b.col + eo; // Celda norte
+        if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
+            break;
 
-    // printf("\n Oeste:\n");
-    // Oeste
-    ns = 0;
-    eo = -1;
-    cell_a.row = cell_b.row + ns; // Celda norte
-    cell_a.col = cell_b.col + eo; // Celda norte
-    if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
-        break;
+        // printf("\n Oeste:\n");
+        // Oeste
+        ns = 0;
+        eo = -1;
+        cell_a.row = cell_b.row + ns; // Celda norte
+        cell_a.col = cell_b.col + eo; // Celda norte
+        if(processCell(cell_a, cell_b, src, dest, gridDim, grid, closedList, cellDetails, &minheap))
+            break;
     }
 
+    printf("Fin de busqueda\n");
     printf("minHeap length: %d\n", minheap.n);
     // printf("minHeap /f (x, y)/: ");
     // printHeap(&minheap);
@@ -290,6 +291,7 @@ void readGrid(const char* filename, int** grid, int width, int height) {
         }
     }
 
+    printf("Grid creada\n");
     fclose(file);
 }
 

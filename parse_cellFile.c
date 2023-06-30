@@ -22,13 +22,13 @@ void extractRectangles(char* line, struct Macro* macro) {
 }
 
 int main() {
-    FILE* file = fopen("./amis_cells/amis500cxascb.lef", "r"); // LEF FILE <--------------------
+    FILE* file = fopen("D:/Desktop/PAR_scripts/router-dijkstra/amis_cells/amis500cxascb.lef", "r"); // LEF FILE <--------------------
     if (file == NULL) {
         printf("No se pudo abrir el archivo.\n");
         return 1;
     }
 
-    const char* filename = "./amis_cells/cell_rects.txt"; // OUTFILE -------------------->
+    const char* filename = "D:/Desktop/PAR_scripts/router-dijkstra/amis_cells/cell_rects.txt"; // OUTFILE -------------------->
     FILE* file_cell = fopen(filename, "w");
     if (file_cell == NULL) {
         printf("Error: No se pudo abrir el archivo.\n");

@@ -3,19 +3,19 @@
 #include <math.h>
 #include <string.h>
 #include <error.h>
-#include "./headers/prototypes.h"
-#include "./headers/aStar.h"
-#include "./headers/Heap.h"
+#include "D:/Desktop/PAR_scripts/router-dijkstra/headers/prototypes.h"
+#include "D:/Desktop/PAR_scripts/router-dijkstra/headers/aStar.h"
+#include "D:/Desktop/PAR_scripts/router-dijkstra/headers/Heap.h"
 
 int main() {
 
     pair gridDim;
-    gridDim.row = 300;
+    gridDim.row = 500;
     gridDim.col = 500;
 
     int** grid = allocateGrid(gridDim.row, gridDim.col);
 
-    const char* filename = "./gridCells.txt"; // File with grid
+    const char* filename = "D:/Desktop/PAR_scripts/router-dijkstra/gridCell.txt"; // File with grid
 
     int width = gridDim.col;
     int height = gridDim.row;

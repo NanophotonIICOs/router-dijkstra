@@ -3,9 +3,7 @@
 #include <string.h>
 
 #define WIDTH 500
-#define WIDTH 500
-#define WIDTH 500
-#define HEIGHT 300
+#define HEIGHT 500
 
 typedef struct {
     int x1, y1, x2, y2;
@@ -79,9 +77,9 @@ int main() {
     Grid grid;
     initializeGrid(&grid, WIDTH, HEIGHT);
 
-    FILE *file = fopen("./amis_cells/cell_inv.txt", "r"); // File containing the macros
+    FILE *file = fopen("D:/Desktop/PAR_scripts/router-dijkstra/amis_cells/cell_inv.txt", "r"); // File containing the macros
     if (file == NULL) {
-        printf("Error: No se pudo abrir el archivo.\n");
+        printf("Error: No se pudo abrir el archivo de las celdas.\n");
         return 1;
     }
 
@@ -112,7 +110,7 @@ int main() {
     fclose(file);
 
     // printGrid(&grid); // DEBUG
-    saveGrid("./gridCells.txt", &grid);
+    saveGrid("D:/Desktop/PAR_scripts/router-dijkstra/gridCell.txt", &grid);
 
     freeGrid(&grid);
 
