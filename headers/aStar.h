@@ -30,18 +30,21 @@ int h_val(pair cell, pair dest){
 
 void tracePath(cell** cellDetails, pair gridDim, pair dest) {
     const char* filename = "D:/Desktop/PAR_scripts/router-dijkstra/path.txt";  // Nombre del archivo de salida
-
+    printf("Trace-path initialized\n");
     FILE* file = fopen(filename, "w");
     if (file == NULL) {
         printf("Error: No se pudo abrir el archivo. (aStar.h/tracePath)\n");
         return;
     }
+    printf("Archivo abierto\n");
     
     int row = dest.row;
     int col = dest.col;
 
     int pathLength = 0;
-    int path[gridDim.row * gridDim.col][2];
+    // int path[gridDim.row * gridDim.col][2];
+    int (*path)[2] = malloc(gridDim.row * gridDim.col * sizeof(int[2]));
+    printf("Debug\n");
 
     while (!(cellDetails[row][col].parent_i == row && cellDetails[row][col].parent_j == col)) {
         path[pathLength][0] = row;
@@ -65,6 +68,7 @@ void tracePath(cell** cellDetails, pair gridDim, pair dest) {
     }
     // printf("\n\n");
     fclose(file);
+    free(path);
 }
 
 int aStar(int** grid, pair gridDim, pair src, pair dest){
@@ -202,7 +206,7 @@ int processCell(pair cell_a, pair cell_b, pair src, pair dest, pair gridDim, int
     if(cell_val (cell_a, gridDim)){
         // printf("Celda cell_a valida\n"); // DEBUG
         if (dest_check(cell_a, dest)) {
-            // printf("Si es destino\n"); // DEBUG
+            printf("Si es destino\n"); // DEBUG
             cellDetails[cell_a.row][cell_a.col].parent_i = cell_b.row;
             cellDetails[cell_a.row][cell_a.col].parent_j = cell_b.col;
             tracePath(cellDetails, gridDim, dest);
@@ -290,7 +294,6 @@ void readGrid(const char* filename, int** grid, int width, int height) {
             }
         }
     }
-
     printf("Grid creada\n");
     fclose(file);
 }
