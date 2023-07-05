@@ -6,6 +6,19 @@
 #define YES 1
 #define NO 0
 
+#define WIDTH 100
+#define HEIGHT 300
+
+typedef struct {
+    int x1, y1, x2, y2;
+} Rectangle;
+
+typedef struct {
+    int **grid;
+    int width;
+    int height;
+} Grid;
+
 struct _cell{
     int parent_i, parent_j;
     int f, g, h;
@@ -43,12 +56,18 @@ int dest_check(pair cell, pair dest);
 int h_val(pair cell, pair dest);
 void tracePath(cell** cellDetails, pair gridDim, pair dest);
 int aStar(int** grid, pair gridDim, pair src, pair dest);
-
 int processCell(pair cell_a, pair cell_b, pair src, pair dest, pair gridDim, int** grid, int** closedList, cell** cellDetails, heap* minheap);
 void freeClosedList(int** closedList, int rows);
 void freeCellDetails(cell** cellDetails, int rows);
-
 void readGrid(const char* filename, int** grid, int width, int height);
+int** allocateGrid(int row, int col);
+void freeGrid(int** grid, int row);
 
+
+void initializeGrid(Grid *grid, int width, int height);
+void insertMacro(Grid *grid, Rectangle rectangle);
+void printGrid(Grid *grid);
+void saveGrid(const char* filename, const Grid* grid);
+void freeGrid_(Grid *grid);
 
 #endif

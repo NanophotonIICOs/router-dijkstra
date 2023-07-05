@@ -3,8 +3,8 @@
 #include "headers/libbmp.h"
 #include "headers/libbmp.c"
 
-#define GRID_WIDTH 500
-#define GRID_HEIGHT 500
+// #define GRID_WIDTH 500
+// #define GRID_HEIGHT 500
 #define GRID_SIZE 20
 #define CELL_SIZE 20
 #define AVAILABLE_COLOR_R 255
@@ -17,15 +17,15 @@
 #define PATH_COLOR_G 0
 #define PATH_COLOR_B 0
 
-void drawGrid(bmp_img *img, const char *gridFilename) {
+void drawGrid(bmp_img *img, const char *gridFilename, int width, int height) {
     FILE *file = fopen(gridFilename, "r");
     if (file == NULL) {
         printf("no se pudo abrir el archivo cuadricula\n");
         return;
     }
 
-    for (int i = 0; i < GRID_HEIGHT; i++) {
-        for (int j = 0; j < GRID_WIDTH; j++) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
             int cellStatus;
             fscanf(file, "%d", &cellStatus);
 
@@ -88,11 +88,27 @@ void highlightPath(bmp_img *img, const char *pathFilename) {
     fclose(file);
 }
 
-int main() {
-    bmp_img img;
-    bmp_img_init_df(&img, GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE);
+int main(int argc, char **argv) {
 
-    drawGrid(&img, "D:/Desktop/PAR_scripts/router-dijkstra/gridCell.txt");
+    printf("\nRouter-bmp initialized\n");
+
+    if (argc != 3) {
+        printf("Uso: ./grid_maker.exe <width> <length>\n");
+        return 1;
+    }
+
+    int width;
+    int height;
+
+    sscanf(argv[1], "%d", &width);
+    sscanf(argv[2], "%d", &height);
+
+    printf("width: %d, height: %d\n", width, height);
+
+    bmp_img img;
+    bmp_img_init_df(&img, width * CELL_SIZE, height * CELL_SIZE);
+
+    drawGrid(&img, "D:/Desktop/PAR_scripts/router-dijkstra/gridCell.txt", width, height);
     highlightPath(&img, "D:/Desktop/PAR_scripts/router-dijkstra/path.txt");
 
     bmp_img_write(&img, "D:/Desktop/PAR_scripts/router-dijkstra/cuadricula_final.bmp");

@@ -1,81 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "D:/Desktop/PAR_scripts/router-dijkstra/headers/prototypes.h"
+#include "D:/Desktop/PAR_scripts/router-dijkstra/headers/grid.h"
 
-#define WIDTH 500
-#define HEIGHT 500
+int main(int argc, char **argv) {
 
-typedef struct {
-    int x1, y1, x2, y2;
-} Rectangle;
+    printf("\nGrid Maker initialized\n");
 
-typedef struct {
-    int **grid;
+    if (argc != 3) {
+        printf("Uso: ./grid_maker.exe <width> <length>\n");
+        return 1;
+    }
+
     int width;
     int height;
-} Grid;
 
-void initializeGrid(Grid *grid, int width, int height) {
-    grid->width = width;
-    grid->height = height;
+    sscanf(argv[1], "%d", &width);
+    sscanf(argv[2], "%d", &height);
 
-    grid->grid = (int **)malloc(sizeof(int *) * grid->height);
-    for (int i = 0; i < grid->height; i++) {
-        grid->grid[i] = (int *)malloc(sizeof(int) * grid->width);
-        for (int j = 0; j < grid->width; j++) {
-            grid->grid[i][j] = 1; // Todo el espacio disponible para routear
-        }
-    }
-}
-
-void insertMacro(Grid *grid, Rectangle rectangle) {
-    for (int i = rectangle.y1; i <= rectangle.y2; i++) {
-        for (int j = rectangle.x1; j <= rectangle.x2; j++) {
-            if (i >= 0 && i < grid->height && j >= 0 && j < grid->width) {
-                grid->grid[i][j] = 0; // Bloquear celdas en el area de m1
-            }
-        }
-    }
-}
-
-void printGrid(Grid *grid) {
-    for (int i = 0; i < grid->height; i++) {
-        for (int j = 0; j < grid->width; j++) {
-            printf("%d ", grid->grid[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-void saveGrid(const char* filename, const Grid* grid) {
-    FILE* file = fopen(filename, "w");
-    if (file == NULL) {
-        printf("Error: No se pudo abrir el archivo para guardar la grid.\n");
-        return;
-    }
-
-    for (int y = 0; y < grid->height; y++) {
-        for (int x = 0; x < grid->width; x++) {
-            int cell = grid->grid[y][x];
-            fprintf(file, "%d ", cell);
-        }
-        fprintf(file, "\n");
-    }
-
-    fclose(file);
-}
-
-void freeGrid(Grid *grid) {
-    for (int i = 0; i < grid->height; i++) {
-        free(grid->grid[i]);
-    }
-    free(grid->grid);
-}
-
-int main() {
+    printf("width: %d, height: %d\n", width, height);
 
     Grid grid;
-    initializeGrid(&grid, WIDTH, HEIGHT);
+    initializeGrid(&grid, width, height);
 
     FILE *file = fopen("D:/Desktop/PAR_scripts/router-dijkstra/amis_cells/cell_inv.txt", "r"); // File containing the macros
     if (file == NULL) {
@@ -112,7 +59,7 @@ int main() {
     // printGrid(&grid); // DEBUG
     saveGrid("D:/Desktop/PAR_scripts/router-dijkstra/gridCell.txt", &grid);
 
-    freeGrid(&grid);
+    freeGrid_(&grid);
 
     return 0;
 }
