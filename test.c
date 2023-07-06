@@ -8,7 +8,7 @@ int main() {
     int src_row = 0;
     int src_col = 0;
     int dest_row = 670;
-    int dest_col = 499;
+    int dest_col = 5;
 
     char grid[100];
     char star[100];
