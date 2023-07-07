@@ -206,7 +206,7 @@ int processCell(pair cell_a, pair cell_b, pair src, pair dest, pair gridDim, int
     if(cell_val (cell_a, gridDim)){
         // printf("Celda cell_a valida\n"); // DEBUG
         if (dest_check(cell_a, dest)) {
-            printf("Si es destino\n"); // DEBUG
+            // printf("Si es destino\n"); // DEBUG
             cellDetails[cell_a.row][cell_a.col].parent_i = cell_b.row;
             cellDetails[cell_a.row][cell_a.col].parent_j = cell_b.col;
             tracePath(cellDetails, gridDim, dest);
